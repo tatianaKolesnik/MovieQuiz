@@ -3,18 +3,7 @@ import UIKit
 final class MovieQuizViewController: UIViewController {
 
     
-    // MARK: - Actions
     
-    @IBAction private func yesButtonClicked(_ sender: UIButton) {
-        let currentQuestion = questions[currentQuestionIndex]
-        let givenAnswer: Bool = true
-        showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
-    }
-    @IBAction private func noButtonClicked(_ sender: UIButton) {
-        let currentQuestion = questions[currentQuestionIndex]
-        let givenAnswer: Bool = false
-        showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
-    }
     
     // MARK: - IBOutlets
     
@@ -74,6 +63,19 @@ final class MovieQuizViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         show(quiz: convert(model: questions[currentQuestionIndex]))
+    }
+    
+    // MARK: - Actions
+    
+    @IBAction private func yesButtonClicked(_ sender: UIButton) {
+        let currentQuestion = questions[currentQuestionIndex]
+        let givenAnswer: Bool = true
+        showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
+    }
+    @IBAction private func noButtonClicked(_ sender: UIButton) {
+        let currentQuestion = questions[currentQuestionIndex]
+        let givenAnswer: Bool = false
+        showAnswerResult(isCorrect: givenAnswer == currentQuestion.correctAnswer)
     }
     
     // MARK: - Private Methods
