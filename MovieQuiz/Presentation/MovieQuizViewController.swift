@@ -13,7 +13,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate{
     
     // MARK: - Properties
     private var statistic = Statistic()
-    private let statisticManager = StatisticServise()
+    private let statisticService: StatisticServiceProtocol = StatisticServiсe()
     
     private let questionsAmount: Int = 10
         private var questionFactory: QuestionFactoryProtocol?
@@ -40,7 +40,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate{
     // MARK: - QuestionFactoryDelegate
     
     func didReceiveNextQuestion(question: QuizQuestion?) {
-        guard let question = question else {
+        guard let question else {
             return
         }
         
@@ -98,7 +98,7 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate{
     
     private func showNextQuestionOrResults() {
         if statistic.currentQuestionIndex == questionsAmount - 1 {
-            statisticManager.updateHighScoreIfNeeded(statistic: &statistic)
+            statisticService.updateHighScoreIfNeeded(statistic: &statistic)
             
             let text = statistic.correctAnswers == questionsAmount ?
             "Поздравляем, вы ответили на 10 из 10!" :
@@ -135,14 +135,14 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate{
         
         
         let model = AlertModel(
-                title: result.title,
-                message: message(),
-                buttonText: result.buttonText
-            ) { [weak self] in
-                guard let self = self else { return }
+            title: result.title,
+            message: message(),
+            buttonText: result.buttonText
+        ) { [weak self] in
+            guard let self = self else { return }
 
                
-                self.statisticManager.saveStatistic(self.statistic)
+                self.statisticService.saveStatistic(self.statistic)
 
                
                 self.statistic.currentQuestionIndex = 0

@@ -4,9 +4,7 @@
 //
 //  Created by Татьяна Черныш on 22.03.2026.
 //
-
 import Foundation
-
 
 struct AlertModel {
     var title: String

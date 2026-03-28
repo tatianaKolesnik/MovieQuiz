@@ -7,7 +7,7 @@
 
 import Foundation
 
-class StatisticServise{
+final class StatisticServiсe:StatisticServiceProtocol {
     private let defaults = UserDefaults.standard
     private let highScoreKey = "highScore"
     private let numberOfQuizzesKey = "numberOfQuizzes"
@@ -36,8 +36,8 @@ class StatisticServise{
 
     func updateHighScoreIfNeeded(statistic: inout Statistic) {
         if statistic.correctAnswers >= statistic.highScore {
-            statistic.highScore = statistic.correctAnswers
-            statistic.lastHighScoreDate = Date()
+           statistic.highScore = statistic.correctAnswers
+           statistic.lastHighScoreDate = Date()
         }
     }
 }
