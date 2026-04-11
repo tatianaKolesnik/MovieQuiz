@@ -7,18 +7,19 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate{
     
     // MARK: - IBOutlets
     
+    @IBOutlet private var activityIndicator: UIActivityIndicatorView!
     @IBOutlet private var counterLabel: UILabel!
     @IBOutlet private var textLabel: UILabel!
     @IBOutlet private var imageView: UIImageView!
     
     // MARK: - Properties
     private var statistic = Statistic()
-    private let statisticService: StatisticServiceProtocol = StatisticServiсe()
+    private var statisticService: StatisticServiceProtocol = StatisticServiсe()
     
     private let questionsAmount: Int = 10
-        private var questionFactory: QuestionFactoryProtocol?
-        private var currentQuestion: QuizQuestion?
-        private var alertPresenter = AlertPresenter()
+    private var questionFactory: QuestionFactoryProtocol?
+    private var currentQuestion: QuizQuestion?
+    private var alertPresenter = AlertPresenter()
     
     
     // MARK: - Lifecycle
@@ -26,14 +27,13 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let questionFactory = QuestionFactory()
-        questionFactory.setup(delegate: self)
-        self.questionFactory = questionFactory
         imageView.layer.cornerRadius = 20
         
-        self.questionFactory?.requestNextQuestion()
+        questionFactory = QuestionFactory(moviesLoader: MoviesLoader(), delegate: self)
         
-        statistic.numberOfQuizzes += 1
+
+            showLoadingIndicator()
+            questionFactory?.loadData()
         
     }
     
@@ -67,14 +67,40 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate{
     
     // MARK: - Private Methods
     
-    private func convert(model: QuizQuestion) -> QuizStepViewModel {
-        let questionStep = QuizStepViewModel(
-            image: UIImage(named: model.image) ?? UIImage(),
-            question: model.text,
-            questionNumber: "\(statistic.currentQuestionIndex + 1)/\(questionsAmount)")
-        imageView.layer.cornerRadius = 20
+    func didLoadDataFromServer() {
+        activityIndicator.isHidden = true 
+        questionFactory?.requestNextQuestion()
+    }
+
+    func didFailToLoadData(with error: Error) {
+        showNetworkError(message: error.localizedDescription)
+    }
+    
+    private func showLoadingIndicator() {
+        activityIndicator.isHidden = true
+        activityIndicator.startAnimating()
+    }
+    private func showNetworkError(message: String) {
+       
+        activityIndicator.isHidden = true
         
-        return questionStep
+        let model = AlertModel(title: "Ошибка",
+                               message: message,
+                               buttonText: "Попробовать еще раз"){[weak self] in
+            guard let self else { return }
+            self.statistic.currentQuestionIndex = 0
+            self.statistic.correctAnswers = 0
+            self.questionFactory?.requestNextQuestion()
+        }
+        alertPresenter.show(in: self, model: model)
+
+    }
+    
+    private func convert(model: QuizQuestion) -> QuizStepViewModel {
+        return QuizStepViewModel(
+               image: UIImage(data: model.image) ?? UIImage(),
+               question: model.text,
+               questionNumber: "\(statistic.currentQuestionIndex + 1)/\(questionsAmount)")
     }
     
     private func show(quiz step: QuizStepViewModel) {

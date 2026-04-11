@@ -28,6 +28,9 @@
 		F6517ADD2F545E12000BD5DF /* YS Display-Medium 2.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6517ADB2F545E12000BD5DF /* YS Display-Medium 2.ttf */; };
 		F6566D472F75470300BCF7B5 /* StatisticService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6566D462F75470300BCF7B5 /* StatisticService.swift */; };
 		F6566D492F785BA600BCF7B5 /* StatisticServiseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6566D482F785BA600BCF7B5 /* StatisticServiseProtocol.swift */; };
+		F659CF202F864D6100898E4B /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F659CF1F2F864D6100898E4B /* NetworkClient.swift */; };
+		F659CF222F868A5700898E4B /* MostPopularMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = F659CF212F868A5700898E4B /* MostPopularMovies.swift */; };
+		F659CF242F868BB800898E4B /* MoviesLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F659CF232F868BB800898E4B /* MoviesLoader.swift */; };
 		F65FBEB52F724384000F9531 /* Statistic.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65FBEB42F724384000F9531 /* Statistic.swift */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +58,9 @@
 		F6517ADB2F545E12000BD5DF /* YS Display-Medium 2.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "YS Display-Medium 2.ttf"; sourceTree = "<group>"; };
 		F6566D462F75470300BCF7B5 /* StatisticService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticService.swift; sourceTree = "<group>"; };
 		F6566D482F785BA600BCF7B5 /* StatisticServiseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticServiseProtocol.swift; sourceTree = "<group>"; };
+		F659CF1F2F864D6100898E4B /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		F659CF212F868A5700898E4B /* MostPopularMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MostPopularMovies.swift; sourceTree = "<group>"; };
+		F659CF232F868BB800898E4B /* MoviesLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesLoader.swift; sourceTree = "<group>"; };
 		F65FBEB42F724384000F9531 /* Statistic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statistic.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,6 +82,7 @@
 				F6488A5B2F6912FA00A8B2F6 /* QuizResultsViewModel.swift */,
 				F65FBEB42F724384000F9531 /* Statistic.swift */,
 				F6488A5D2F69130E00A8B2F6 /* QuizQuestion.swift */,
+				F659CF212F868A5700898E4B /* MostPopularMovies.swift */,
 				F6488A632F6FC5CA00A8B2F6 /* AlertModel.swift */,
 			);
 			path = Models;
@@ -86,8 +93,10 @@
 			children = (
 				F6488A572F690F7700A8B2F6 /* QuestionFactory.swift */,
 				F6566D482F785BA600BCF7B5 /* StatisticServiseProtocol.swift */,
+				F659CF232F868BB800898E4B /* MoviesLoader.swift */,
 				F6488A5F2F6BCF2200A8B2F6 /* QuestionFactoryProtocol.swift */,
 				F6488A612F6BD98A00A8B2F6 /* QuestionFactoryDelegate.swift */,
+				F659CF1F2F864D6100898E4B /* NetworkClient.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -230,10 +239,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD5EE5DE284D7887003966EF /* UIColor+Extensions.swift in Sources */,
+				F659CF222F868A5700898E4B /* MostPopularMovies.swift in Sources */,
 				F6488A662F6FC72500A8B2F6 /* AlertPresenter.swift in Sources */,
 				F6488A642F6FC5CA00A8B2F6 /* AlertModel.swift in Sources */,
 				AD7AFA552836189F00399704 /* Array+Extensions.swift in Sources */,
 				F6488A602F6BCF2200A8B2F6 /* QuestionFactoryProtocol.swift in Sources */,
+				F659CF202F864D6100898E4B /* NetworkClient.swift in Sources */,
+				F659CF242F868BB800898E4B /* MoviesLoader.swift in Sources */,
 				F6488A622F6BD98A00A8B2F6 /* QuestionFactoryDelegate.swift in Sources */,
 				AD1ABAB62831907B00B3E448 /* MovieQuizViewController.swift in Sources */,
 				F65FBEB52F724384000F9531 /* Statistic.swift in Sources */,
