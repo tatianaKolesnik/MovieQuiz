@@ -1,0 +1,4 @@
+DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in // слабая ссылка на self
+    guard let self = self else { return } // разворачиваем слабую ссылку
+    self.showNextQuestionOrResults()
+} 
